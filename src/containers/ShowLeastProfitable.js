@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '.././App.css';
 import connect from "react-redux/es/connect/connect";
-import * as actions from "../actions/sales";
+import {showLeastProfitableSeller, deleteLeastProfitableSeller} from "../actions/sales";
 import "react-table/react-table.css";
 
 class ShowLeastProfitable extends Component {
@@ -26,17 +26,30 @@ class ShowLeastProfitable extends Component {
         const {leastProfitableSeller, salesRecords} = this.props;
         return (
             <div className="show-least-profitable-seller-wrapper">
-                <button className='record-car-sale-wrapper__submit-car-sale-button' onClick={() => this.handleOnButtonClick()}><div>Show Least Profitable Seller</div></button>
-                {this.state.showLeastProfitableSeller && salesRecords.length > 1 && <p style={{margin: '0 0 0 30px'}}>{leastProfitableSeller.name}</p>}
-                {this.state.showLeastProfitableSeller && salesRecords.length > 1 && <button className='record-car-sale-wrapper__submit-car-sale-button' onClick={() => this.handleDeleteSeller()}><div>Delete Least Profitable Seller</div></button>}
+                <button className='record-car-sale-wrapper__submit-car-sale-button'
+                        onClick={() => this.handleOnButtonClick()}><div>Show Least Profitable Seller</div>
+                </button>
+                {this.state.showLeastProfitableSeller && salesRecords.length > 1 &&
+                <p style={{margin: '0 0 0 30px'}}>{leastProfitableSeller.name}</p>}
+                {this.state.showLeastProfitableSeller && salesRecords.length > 1 &&
+                <button className='record-car-sale-wrapper__submit-car-sale-button'
+                        onClick={() => this.handleDeleteSeller()}><div>Delete Least Profitable Seller</div>
+                </button>}
             </div>
         );
     }
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
     const {leastProfitableSeller, salesRecords} = state.sales;
     return {leastProfitableSeller, salesRecords}
-}
+};
 
-export default connect(mapStateToProps, actions)(ShowLeastProfitable);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        showLeastProfitableSeller: () => dispatch(showLeastProfitableSeller()),
+        deleteLeastProfitableSeller: () => dispatch(deleteLeastProfitableSeller())
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ShowLeastProfitable);

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '.././App.css';
 import connect from "react-redux/es/connect/connect";
-import * as actions from "../actions/sales";
+import {showTotalSales} from "../actions/sales";
 import SalesPeople from "../components/SalesPeople";
 import ReactTable from "react-table";
 import "react-table/react-table.css";
@@ -71,9 +71,15 @@ class ShowTotalSales extends Component {
     }
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
     const {sellers, salesRecords, totalSales} = state.sales;
     return {sellers, salesRecords, totalSales}
-}
+};
 
-export default connect(mapStateToProps, actions)(ShowTotalSales);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        showTotalSales: (sellerId) => dispatch(showTotalSales(sellerId)),
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ShowTotalSales);

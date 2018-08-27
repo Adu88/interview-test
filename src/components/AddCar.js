@@ -47,6 +47,7 @@ class AddCar extends Component {
                 id: new Date().getTime()
             };
             this.props.addCar(car);
+            this.setState({name: '', color: '', purchaseValue: ''})
         }
     }
 

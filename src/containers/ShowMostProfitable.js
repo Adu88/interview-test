@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '.././App.css';
 import connect from "react-redux/es/connect/connect";
-import * as actions from "../actions/sales";
+import {showMostProfitableSeller} from "../actions/sales";
 import "react-table/react-table.css";
 
 class ShowMostProfitable extends Component {
@@ -28,9 +28,15 @@ class ShowMostProfitable extends Component {
     }
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
     const {mostProfitableSeller, salesRecords} = state.sales;
     return {mostProfitableSeller, salesRecords}
-}
+};
 
-export default connect(mapStateToProps, actions)(ShowMostProfitable);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        showMostProfitableSeller: () => dispatch(showMostProfitableSeller()),
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ShowMostProfitable);

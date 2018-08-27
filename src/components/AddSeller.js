@@ -40,7 +40,8 @@ class AddSeller extends Component {
                 lastName: this.state.lastName,
                 id: new Date().getTime()
             };
-            this.props.addSeller(seller)
+            this.props.addSeller(seller);
+            this.setState({firstName: '', lastName: ''});
         }
     }
 
