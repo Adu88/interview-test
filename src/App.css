@@ -1,0 +1,68 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 60px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+.record-car-sale-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 50px;
+  padding: 0 30px;
+  margin-top: 10px;
+}
+
+.record-car-sale-wrapper__submit-car-sale-button {
+  background: linear-gradient(0deg, #1991EB 0%, #2DA1F8 100%);
+  color: #fff;
+  height: 30px;
+  width: 140px;
+  align-self: flex-end;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-left: 30px;
+}
+
+.show-total-sales-wrapper__header {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  height: 60px  ;
+}
+
+.show-total-sales-wrapper__sales-list {
+  margin-top: 30px;
+}
+
+.show-least-profitable-seller-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  height: 60px  ;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
