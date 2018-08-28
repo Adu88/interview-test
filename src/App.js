@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import connect from "react-redux/es/connect/connect";
-import * as actions from './actions/sales';
+import {connect} from "react-redux";
+import {setCars, setSellers} from './actions/sales';
 import {cars, sellers} from "./helpers/jsonData";
 import RecordASale from "./containers/RecordASale";
 import AddMockupData from "./containers/AddMockupData";
@@ -9,7 +9,7 @@ import ShowTotalSales from "./containers/ShowTotalSales";
 import ShowLeastProfitable from "./containers/ShowLeastProfitable";
 import ShowMostProfitable from "./containers/ShowMostProfitable";
 
-class App extends Component {
+export class App extends Component {
 
   componentDidMount() {
       this.props.setSellers(sellers);
@@ -17,7 +17,6 @@ class App extends Component {
   }
 
   render() {
-    const {cars, sellers} = this.props;
     return (
       <div className="App">
         <header className="App-header">
@@ -33,9 +32,11 @@ class App extends Component {
   }
 }
 
-function mapStateToProps(state) {
-    const {cars, sellers} = state.sales;
-    return {cars, sellers}
-}
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setCars: (cars) => dispatch(setCars(cars)),
+        setSellers: (sellers) => dispatch(setSellers(sellers)),
+    }
+};
 
-export default connect(mapStateToProps, actions)(App);
+export default connect(null, mapDispatchToProps)(App);

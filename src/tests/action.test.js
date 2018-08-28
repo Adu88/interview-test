@@ -2,9 +2,9 @@ import {showTotalSales} from "../actions/sales";
 import {SHOW_TOTAL_SALES} from "../constants";
 
 
-const data = 1
+const data = 1;
 
-const type= SHOW_TOTAL_SALES
+const type= SHOW_TOTAL_SALES;
 
 describe('showTotalSales action creator', () => {
 

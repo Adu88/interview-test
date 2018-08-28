@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import '.././App.css';
 import AddSeller from "../components/AddSeller";
 import AddCar from "../components/AddCar";
-import connect from "react-redux/es/connect/connect";
-import * as actions from "../actions/sales";
+import {connect} from "react-redux";
+import {addCar, addSeller} from "../actions/sales";
 
 class AddMockupData extends Component {
 
@@ -27,4 +27,11 @@ class AddMockupData extends Component {
     }
 }
 
-export default connect(null, actions)(AddMockupData);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addCar: (car) => dispatch(addCar(car)),
+        addSeller: (seller) => dispatch(addSeller(seller))
+    }
+};
+
+export default connect(null, mapDispatchToProps)(AddMockupData);

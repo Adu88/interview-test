@@ -8,20 +8,20 @@ import {
     SHOW_TOTAL_SALES
 } from "../constants";
 
-export function sales(
-    state = {
-        cars: [],
-        sellers: [],
-        salesRecords: [],
-        totalSales: [],
-        mostProfitableSeller: '',
-        leastProfitableSeller: {
-            id: '',
-            name: '',
-            profit: ''
-        }
-        },
-    action) {
+const initialState= {
+    cars: [],
+    sellers: [],
+    salesRecords: [],
+    totalSales: [],
+    mostProfitableSeller: '',
+    leastProfitableSeller: {
+        id: '',
+        name: '',
+        profit: ''
+    }
+};
+
+export const sales = (state=initialState,action) => {
     switch (action.type) {
         case SET_SELLERS: {
             return Object.assign({}, state, {sellers: action.sellers});

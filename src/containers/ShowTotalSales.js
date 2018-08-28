@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import '.././App.css';
-import connect from "react-redux/es/connect/connect";
+import {connect} from "react-redux";
 import {showTotalSales} from "../actions/sales";
 import SalesPeople from "../components/SalesPeople";
 import ReactTable from "react-table";
 import "react-table/react-table.css";
+import {getSalesRecords, getSellers, getTotalSales} from "../selectors";
 
 class ShowTotalSales extends Component {
     state = {
@@ -72,8 +73,11 @@ class ShowTotalSales extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const {sellers, salesRecords, totalSales} = state.sales;
-    return {sellers, salesRecords, totalSales}
+    return {
+        sellers: getSellers(state),
+        salesRecords: getSalesRecords(state),
+        totalSales: getTotalSales(state)
+    }
 };
 
 const mapDispatchToProps = (dispatch) => {

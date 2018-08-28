@@ -5,7 +5,6 @@ import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import withStyles from "@material-ui/core/es/styles/withStyles";
 import PropTypes from 'prop-types';
 import InputLabel from "@material-ui/core/InputLabel/InputLabel";
-import Input from "@material-ui/core/Input/Input";
 
 const styles = () => ({
     formControl: {
@@ -31,7 +30,7 @@ class SalesPeople extends Component {
 
     render (){
         const {classes, sellers} = this.props;
-        return sellers ? (
+        return sellers.length > 0 ? (
             <form autoComplete="off" className={classes.formWrapper}>
                 <FormControl className={classes.formControl}>
                     <InputLabel htmlFor="seller-helper">Seller</InputLabel>

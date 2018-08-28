@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import '.././App.css';
-import connect from "react-redux/es/connect/connect";
+import {connect} from "react-redux";
 import {showLeastProfitableSeller, deleteLeastProfitableSeller} from "../actions/sales";
 import "react-table/react-table.css";
+import {getLeastProfitableSellerSelector, getSalesRecords} from "../selectors";
 
 class ShowLeastProfitable extends Component {
     state = {
@@ -41,8 +42,10 @@ class ShowLeastProfitable extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const {leastProfitableSeller, salesRecords} = state.sales;
-    return {leastProfitableSeller, salesRecords}
+    return {
+        leastProfitableSeller: getLeastProfitableSellerSelector(state),
+        salesRecords: getSalesRecords(state),
+    }
 };
 
 const mapDispatchToProps = (dispatch) => {

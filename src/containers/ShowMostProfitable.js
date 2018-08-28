@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import '.././App.css';
-import connect from "react-redux/es/connect/connect";
+import {connect} from "react-redux";
 import {showMostProfitableSeller} from "../actions/sales";
 import "react-table/react-table.css";
+import {getMostProfitableSellerSelector, getSalesRecords} from "../selectors";
 
 class ShowMostProfitable extends Component {
     state = {
@@ -29,8 +30,10 @@ class ShowMostProfitable extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const {mostProfitableSeller, salesRecords} = state.sales;
-    return {mostProfitableSeller, salesRecords}
+    return {
+        mostProfitableSeller: getMostProfitableSellerSelector(state),
+        salesRecords: getSalesRecords(state),
+    }
 };
 
 const mapDispatchToProps = (dispatch) => {

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import '.././App.css';
-import connect from "react-redux/es/connect/connect";
-import * as actions from '.././actions/sales';
+import {connect} from "react-redux";
+import {recordASale} from '.././actions/sales';
 import SalesPeople from ".././components/SalesPeople";
 import Cars from ".././components/Cars";
 import SalePrice from ".././components/SalePrice";
+import {getCars, getSalesRecords, getSellers, getTotalSales} from "../selectors";
 
 class RecordASale extends Component {
 
@@ -69,9 +70,18 @@ class RecordASale extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    const {cars, sellers, salesRecords} = state.sales;
-    return {cars, sellers, salesRecords}
-}
+const mapStateToProps = (state) => {
+    return {
+        sellers: getSellers(state),
+        cars: getCars(state),
+        salesRecords: getSalesRecords(state)
+    }
+};
 
-export default connect(mapStateToProps, actions)(RecordASale);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        recordASale: (saleRecord) => dispatch(recordASale(saleRecord)),
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(RecordASale);
